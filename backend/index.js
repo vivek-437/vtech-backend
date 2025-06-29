@@ -23,8 +23,9 @@ app.post("/api/contact", async (req, res) => {
   }
 
   const mailOptions = {
-    from: email,
+    from: `"${name}" <${process.env.EMAIL_USER}>`, // ✅ always use your verified Gmail address here
     to: process.env.TO_EMAIL,
+    replyTo: email, // ✅ sets user's email in Reply-To
     subject: `Contact Form: ${subject}`,
     text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
   };
@@ -40,5 +41,5 @@ app.post("/api/contact", async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
