@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: vtech-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    rootDir: backend
+    envVars:
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: TO_EMAIL
+        sync: false
